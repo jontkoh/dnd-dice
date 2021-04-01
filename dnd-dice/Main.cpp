@@ -1,9 +1,7 @@
 #include <iostream>
-#include <typeinfo>
 #include <vector>
 #include <string>
 #include <cstdlib>
-
 
 class DiceCluster
 {
@@ -31,12 +29,12 @@ public:
 	};
 };
 
-// ex of str: 3d12
-int * getDiceAndSidesHandler(std::string& str_ref)
+// handles string to int conversion for amt of dice and num of sides for each die 
+std::vector<int> diceAndSidesStrToIntVectorHandler(std::string& str_ref)
 {
 	std::string amt_of_dice;
 	std::string num_of_sides;
-	int dice_and_sides[2] = {};
+	std::vector<int> dice_and_sides;
 	unsigned int size = str_ref.size() - 1;
 
 	bool is_past_d = false;
@@ -57,12 +55,13 @@ int * getDiceAndSidesHandler(std::string& str_ref)
 			num_of_sides += str_ref[i];
 		};
 	};
-	dice_and_sides[0] = std::stoi(amt_of_dice);
-	dice_and_sides[1] = std::stoi(num_of_sides);
+	dice_and_sides.push_back(std::stoi(amt_of_dice));
+	dice_and_sides.push_back(std::stoi(num_of_sides));
 
 	return dice_and_sides;
 }
 
+// Simulates 1 dice roll depending on the DiceCluster
 int rollDice(DiceCluster* dc)
 {
 	int sum_sides_of_dice = dc->getNumOfDice() * dc->getNumOfSides();
@@ -76,11 +75,11 @@ int main()
 {
 	std::cout << "Hello input the dice (i.e. 3d12) \n";
 
-	std::string dice_and_sides_input = "3d12";
+	std::string dice_and_sides_input;
 	
-	//std::cin >> dice_and_sides_input;
+	std::cin >> dice_and_sides_input;
 
-	int* dice_and_sides = getDiceAndSidesHandler(dice_and_sides_input);
+	std::vector<int> dice_and_sides = diceAndSidesStrToIntVectorHandler(dice_and_sides_input);
 	
 	const int dice = dice_and_sides[0];
 	const int sides = dice_and_sides[1];
@@ -95,6 +94,4 @@ int main()
 	{
 		std::cout << "\nresult of dice roll: " << rollDice(dc);
 	}
-	
-
 }
