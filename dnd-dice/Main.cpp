@@ -73,11 +73,12 @@ int rollDice(DiceCluster* dc)
 
 int main()
 {
-	std::cout << "Hello input the dice (i.e. 3d12) \n";
-	std::cout << "----format is 3 dice 12 sides------\n";
+	std::cout << "Hello input the amount of dice and number of sides \n(Format is: 3d12 -----> 3 dice 12 sides) \n";
+	std::cout << "\n* The \'d\' stands for dice\n";
 
 	std::string dice_and_sides_input;
 	
+	std::cout << "\n\nInput here: "; 
 	std::cin >> dice_and_sides_input;
 
 	std::vector<int> dice_and_sides = diceAndSidesStrToIntVectorHandler(dice_and_sides_input);
