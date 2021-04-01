@@ -74,6 +74,7 @@ int rollDice(DiceCluster* dc)
 int main()
 {
 	std::cout << "Hello input the dice (i.e. 3d12) \n";
+	std::cout << "----format is 3 dice 12 sides------\n";
 
 	std::string dice_and_sides_input;
 	
